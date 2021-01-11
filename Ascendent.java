@@ -3,6 +3,7 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JTextArea;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
@@ -11,6 +12,9 @@ import javax.swing.JComboBox;
 import java.awt.event.ActionListener;
 import java.util.InputMismatchException;
 import java.awt.event.ActionEvent;
+import java.awt.TextArea;
+import java.awt.Color;
+import javax.swing.DefaultComboBoxModel;
 
 public class Ascendent extends JFrame {
 
@@ -20,6 +24,7 @@ public class Ascendent extends JFrame {
 	private JTextField Year;
 	private JTextField Hours;
 	private JTextField Minutes;
+	
 
 	/**
 	 * Launch the application.
@@ -48,6 +53,18 @@ public class Ascendent extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
+		TextArea textZodiq = new TextArea();
+		textZodiq.setBackground(Color.WHITE);
+		textZodiq.setEditable(false);
+		textZodiq.setBounds(27, 357, 343, 108);
+		contentPane.add(textZodiq);
+		
+		TextArea textAsc = new TextArea();
+		textAsc.setBackground(Color.WHITE);
+		textAsc.setEditable(false);
+		textAsc.setBounds(418, 10, 343, 359);
+		contentPane.add(textAsc);
+		
 		Day = new JTextField();
 		Day.setBounds(21, 71, 110, 32);
 		contentPane.add(Day);
@@ -73,10 +90,6 @@ public class Ascendent extends JFrame {
 		contentPane.add(Minutes);
 		Minutes.setColumns(10);
 		
-		JLabel lblAsc = new JLabel("");
-		lblAsc.setBounds(440, 21, 322, 353);
-		contentPane.add(lblAsc);
-		
 		JButton startbtn = new JButton("Ascedent!");
 		startbtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -87,10 +100,12 @@ public class Ascendent extends JFrame {
 					year= Integer.parseInt(Year.getText());
 					hour= Integer.parseInt(Hours.getText());
 					minutes= Integer.parseInt(Minutes.getText());
+					ValidationClass obj = new ValidationClass(day, month, year, hour, minutes);
+					textZodiq.setText(obj.getError());
 				}catch(NumberFormatException e) {
-					System.out.println("Въведете число моля");
+					textZodiq.setText("Vuvedete chislo molq");
 				}catch(InputMismatchException e) {
-					System.out.println("Не може да бъде сведено до цяло число");
+					textZodiq.setText("Ne moje da bude svedeno do cqlo chislo");
 				}
 				
 			}
@@ -99,6 +114,7 @@ public class Ascendent extends JFrame {
 		contentPane.add(startbtn);
 		
 		JComboBox GMT = new JComboBox();
+		GMT.setModel(new DefaultComboBoxModel(new String[] {"GMT", "GMT+1", "GMT-1"}));
 		GMT.setBounds(21, 286, 121, 32);
 		contentPane.add(GMT);
 		
@@ -113,10 +129,17 @@ public class Ascendent extends JFrame {
 		JLabel lblYear = new JLabel("Year");
 		lblYear.setBounds(299, 38, 92, 26);
 		contentPane.add(lblYear);
-	}
+		
+		JLabel lblWarning = new JLabel("Please use valid numbers");
+		lblWarning.setBounds(21, 0, 388, 26);
+		contentPane.add(lblWarning);
+		
 	
-	private void Formula() {
+		
 		
 	}
 	
+	
+
+
 }
