@@ -3,6 +3,7 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JTextArea;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
@@ -13,6 +14,7 @@ import java.util.InputMismatchException;
 import java.awt.event.ActionEvent;
 import java.awt.TextArea;
 import java.awt.Color;
+import javax.swing.DefaultComboBoxModel;
 
 public class Ascendent extends JFrame {
 
@@ -22,6 +24,7 @@ public class Ascendent extends JFrame {
 	private JTextField Year;
 	private JTextField Hours;
 	private JTextField Minutes;
+	
 
 	/**
 	 * Launch the application.
@@ -97,6 +100,8 @@ public class Ascendent extends JFrame {
 					year= Integer.parseInt(Year.getText());
 					hour= Integer.parseInt(Hours.getText());
 					minutes= Integer.parseInt(Minutes.getText());
+					ValidationClass obj = new ValidationClass(day, month, year, hour, minutes);
+					textZodiq.setText(obj.getError());
 				}catch(NumberFormatException e) {
 					textZodiq.setText("Vuvedete chislo molq");
 				}catch(InputMismatchException e) {
@@ -109,6 +114,7 @@ public class Ascendent extends JFrame {
 		contentPane.add(startbtn);
 		
 		JComboBox GMT = new JComboBox();
+		GMT.setModel(new DefaultComboBoxModel(new String[] {"GMT", "GMT+1", "GMT-1"}));
 		GMT.setBounds(21, 286, 121, 32);
 		contentPane.add(GMT);
 		
@@ -133,81 +139,7 @@ public class Ascendent extends JFrame {
 		
 	}
 	
-	public void Zodiq() {
-		//1-oven; 2- telec; 3-bliznaci; 4-rak; 5-luv; 6-deva; 7-vezni; 8-skorpion; 9- strelec; 10-kozirog; 11-vodolei; 12-ribi;
-		int day, month, year, hour, minutes, zodiq;
-		day= Integer.parseInt(Day.getText());
-		month= Integer.parseInt(Month.getText());
-		year= Integer.parseInt(Year.getText());
-		hour= Integer.parseInt(Hours.getText());
-		minutes= Integer.parseInt(Minutes.getText());
-		if (month == 3 && day>20 || month == 4 && day <21) {
-			textZodiq.setText("Vashata zodiq e Oven");
-			zodiq=1;
-		}
-		if (month == 4 && day>20 || month == 5 && day <22) {
-			textZodiq.setText("Vashata zodiq e Telec");
-			zodiq=2;
-		}
-		if (month == 5 && day>21 || month == 6 && day <22) {
-			textZodiq.setText("Vashata zodiq e Bliznaci");
-			zodiq=3;
-		}
-		if (month == 6 && day>21 || month == 7 && day <23) {
-			textZodiq.setText("Vashata zodiq e Rak");
-			zodiq=4;
-		}
-		if (month == 7 && day>22 || month == 8 && day <24) {
-			textZodiq.setText("Vashata zodiq e Lav");
-			zodiq=5;
-		}
-		if (month == 8 && day>23 || month == 9 && day <24) {
-			textZodiq.setText("Vashata zodiq e Deva");
-			zodiq=6;
-		}
-		if (month == 9 && day>23 || month == 10 && day <24) {
-			textZodiq.setText("Vashata zodiq e Vezni");
-			zodiq=7;
-			}
-		if (month == 10 && day>23 || month == 11 && day <23) {
-			textZodiq.setText("Vashata zodiq e Skorpion");
-			zodiq=8;
-			}
-		if (month == 11 && day>22 || month == 12 && day <22) {
-			textZodiq.setText("Vashata zodiq e Strelec");
-			zodiq=9;
-			}
-		if (month == 12 && day>21 || month == 1 && day <21) {
-			textZodiq.setText("Vashata zodiq e Kozirog");
-			zodiq=10;
-			}
-		if (month == 1 && day>20 || month == 2 && day <20) {
-			textZodiq.setText("Vashata zodiq e Vodolei");
-			zodiq=11;
-			}
-		if (month == 2 && day>19 || month == 3 && day <21) {
-			textZodiq.setText("Vashata zodiq e Ribi");
-			zodiq=12;
-			}
-	}
-
-	public void Formula() {
-		
-	}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+	
 
 
 }
