@@ -14,9 +14,7 @@ public class ValidationClass extends Ascendent{
 	    }
 
 	    public void setError(String error1) {
-	        if (!error1.equals(null)) {
-	            this.error = error1;
-	        }
+	        this.error=error1;
 	    }	
 	    
 		public int getZodiq() {
@@ -24,10 +22,9 @@ public class ValidationClass extends Ascendent{
 	    }
 
 	    public void setZodiq(int zodiq1) {
-	        if (zodiq1 < 32 && zodiq1 > 0) {
-	            this.zodiq = zodiq1;
+	       
 	        } 
-	    }
+	    
 	public int getDay() {
         return day;
     }
@@ -47,7 +44,7 @@ public class ValidationClass extends Ascendent{
         if (month1 < 13 && month1 > 0) {
             this.month = month1;
         } else {
-        	JOptionPane.showMessageDialog(null, "Vuvedete nanovo");
+        	JOptionPane.showMessageDialog(null, "Vuvedete nanovo1");
         }
         }
     public int getYear() {
@@ -55,10 +52,10 @@ public class ValidationClass extends Ascendent{
     }
 
     public void setYear(int year1) {
-        if (year1 < 1859 && year1 > 2100) {
+        if (year1 > 1859 && year1 < 2100) {
             this.year = year1;
         } else {
-        	JOptionPane.showMessageDialog(null, "Vuvedete nanovo");
+        	JOptionPane.showMessageDialog(null, "Vuvedete nanovo2");
         }
     }    
     public int getHour() {
@@ -69,7 +66,7 @@ public class ValidationClass extends Ascendent{
         if (hour1 < 25) {
             this.hour = hour1;
         } else {
-        	JOptionPane.showMessageDialog(null, "Vuvedete nanovo");
+        	JOptionPane.showMessageDialog(null, "Vuvedete nanovo3");
         }
     }   
     public int getMinutes() {
@@ -80,7 +77,7 @@ public class ValidationClass extends Ascendent{
         if (minutes1 < 60) {
             this.minutes = minutes1;
         } else {
-        	JOptionPane.showMessageDialog(null, "Vuvedete nanovo");
+        	JOptionPane.showMessageDialog(null, "Vuvedete nanovo4");
         }
     }   
 
@@ -91,6 +88,12 @@ public class ValidationClass extends Ascendent{
     	setHour(hour);
     	setMinutes(minutes);
         }
+    
+     public ValidationClass() {
+		this(1, 2, 2003, 10, 58);
+	}
+        
+    
 
     public void Zodiq() {
 		//1-oven; 2- telec; 3-bliznaci; 4-rak; 5-luv; 6-deva; 7-vezni; 8-skorpion; 9- strelec; 10-kozirog; 11-vodolei; 12-ribi;
@@ -134,30 +137,29 @@ public class ValidationClass extends Ascendent{
 		if (month == 10 && day>23 || month == 11 && day <23) {
 			greshki += "Vashata zodiq e Skorpion";
 			setError(greshki);
-			zodiq=8;
+			setZodiq(8);
 			}
 		if (month == 11 && day>22 || month == 12 && day <22) {
 			greshki += "Vashata zodiq e Strelec";
 			setError(greshki);
-			zodiq=9;
+			setZodiq(9);
 			}
 		if (month == 12 && day>21 || month == 1 && day <21) {
 			greshki += "Vashata zodiq e Kozirog";
 			setError(greshki);
-			zodiq=10;
+			setZodiq(10);
 			}
 		if (month == 1 && day>20 || month == 2 && day <20) {
 			greshki += "Vashata zodiq e Vodolei";
 			setError(greshki);
-			zodiq=11;
+			setZodiq(11);
 			}
 		if (month == 2 && day>19 || month == 3 && day <21) {
 			greshki += "Vashata zodiq e Ribi";
 			setError(greshki);
-			zodiq=12;
+			setZodiq(12);
 			}
 	}
 
 
 }
-
